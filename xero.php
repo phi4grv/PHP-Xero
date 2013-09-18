@@ -112,10 +112,11 @@ class Xero {
 			if ( !in_array($name, $valid_get_methods) ) {
 				return false;
 			}
+            $where = null;
 			$filterid = ( count($arguments) > 0 ) ? strip_tags(strval($arguments[0])) : false;
 			if($arguments[1]!=false) $modified_after = ( count($arguments) > 1 ) ? str_replace( 'X','T', date( 'Y-m-dXH:i:s', strtotime($arguments[1])) ) : false;
 			if($arguments[2]!=false) $where = ( count($arguments) > 2 ) ? $arguments[2] : false;
-			if ( isset($where) && is_array($where) && (count($where) > 0) ) {
+			if ( is_array($where) && (count($where) > 0) ) {
 				$temp_where = '';
 				foreach ( $where as $wf => $wv ) {
 					if ( is_bool($wv) ) {
